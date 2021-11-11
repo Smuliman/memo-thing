@@ -14,8 +14,8 @@ table, td {
     text-align: center;
     background-color: rgb(252, 238, 213);
     
-    margin-left: 500px;
-    margin-right: 500px;
+    margin-left: 100px;
+    margin-right: 100px;
     margin-top: 50px;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 40px 0 rgba(0, 0, 0, 0.19);
@@ -51,8 +51,8 @@ table, td {
     background-color: rgb(255, 212, 195);
     
     
-    margin-left: 500px;
-    margin-right: 500px;
+    margin-left: 100px;
+    margin-right: 100px;
     margin-bottom: 25px;
     margin-top: 5px;
     padding: 10px;
@@ -90,8 +90,8 @@ table, td {
     
     text-decoration: line-through;
     font-style: italic;
-    margin-left: 500px;
-    margin-right: 500px;
+    margin-left: 100px;
+    margin-right: 100px;
     margin-bottom: 25px;
     margin-top: 5px;
     padding: 10px;

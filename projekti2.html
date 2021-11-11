@@ -50,10 +50,20 @@
             let addText = document.getElementById("memo-textarea");
 
             addBtn.addEventListener("click", (e) => {
+                //check for empty fields
                 if (addTitle.value == "" || addText.value == "") {
                     return alert("Please, add notes and text");
                 }
-
+                //check for too long title
+                if (addTitle.value.length > 15) {
+                    return alert("Too long title! Save details to text section!");
+                }
+                //check for too short text
+                if (addText.value.length < 5) {
+                    return alert("Too short memo, You can remember this own your own!");
+                }
+                
+                //saving the memo to local Storage
                 let memos = localStorage.getItem("memos");
                 if (memos == null){
                     memosObj = [];
@@ -78,7 +88,7 @@
         
 
             })
-
+            // function to show all the saved memos
             function showMemos() {
                 let memos = localStorage.getItem("memos")
                 if (memos == null){
@@ -124,6 +134,7 @@
                 showMemos();
             }
     }
+    //function to mark memo done
     function markDone(index) {
         let confirmDone = confirm("Is it really done? Really");
         if(confirmDone == true) {
