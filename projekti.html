@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+		<title>Projekti table</title>
+		<!-- script tag is where Javascript goes to -->
+		
+
+	</head>
+
+	<body>
+		<h1>Memo thing</h1>
+        <p>
+            
+            Subject
+            <input type="text" name="textbox2" id="textbox2">
+            <br>
+            Text
+            <input type="text" name="textbox3" id="textbox3">
+            <br>
+            <button class="Add-button" onclick="addMemo()">Add</button>
+        </p>
+        <table id="memo" class="display">
+            <thead>
+                <th>Status</th>
+                <th>Subject</th>
+                <th>Text</th>
+            </thead>
+            <tbody>
+                <tr id="myRow">
+                    <td onclick="clicked()">true</td>
+                    <td>JS Palautus</td>
+                    <td>Palautus meni jo lokakuun lopussa, mutta minkäs teet</td>
+
+                </tr>
+            </tbody>
+
+        </table>
+        <script>
+            //funktio jolla luodaan muistiomerkintä
+			function addMemo(){
+
+                var memoTable = document.getElementById("memo");
+                //lisätään uusi rivi
+                var newRow=memoTable.insertRow()
+                
+                //lisätään solut
+                var cell1=newRow.insertCell(0);
+                var cell2=newRow.insertCell(1);
+                var cell3=newRow.insertCell(2);
+
+                
+
+                //
+                //varalla var id=document.getElementById('textbox').value;
+                
+                var subject=document.getElementById('textbox2').value;
+                var text=document.getElementById('textbox3').value;
+
+                //cell1.innerHTML = true
+                cell1.innerHTML = '<td onclick="clicked()">dsf</td>';
+                cell2.innerHTML = subject;
+                cell3.innerHTML = text;
+
+                //cell1.innerHTML="<input type='text' name='date[]' />
+
+               
+                newRow.appendChild(tr)
+                
+
+
+            }
+            function clicked() {
+                document.getElementsByTagName('td')[0].style = "color: red";
+                // muistiin: document.getElementsByTagName('td')[0].value = false;
+            }
+		</script>
+
+
+	</body>
+
+</html>

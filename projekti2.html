@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="styles.css">
+		<title>Projekti</title>
+		
+		
+
+	</head>
+
+	<body>
+        <div class="createMemo">
+        
+		<h1>Memo thing</h1>
+        <!--Create the textfields where user inputs memo details-->
+        <form action="">
+            <input type="text" id="memo-text" placeholder="Memo title">
+            <br>
+            <textarea name="" id="memo-textarea"  placeholder="Memo text"></textarea>
+            <br>
+            <button id="add-button">Add Memo</button>
+        
+        </form>
+        </div>
+        <br>
+        <section>
+            <!--Create memonotes that are created after user input and presented below in creation order-->
+            
+            <div id="memoList">
+        
+            
+            <div id="notDone">
+            <p id="note-counter">Memo 1</p>
+            <h3 id="note-title">Title</h3>
+            <p id="note-text">Text</p>
+            <button class="done-button">Done</button>
+            <button class="delete-button">Delete</button>
+            
+            </div>
+            </div>
+        
+        
+        
+    </section>
+        <script>
+            // inputs are handled and saved into local storage
+            let addBtn = document.getElementById("add-button");
+            let addTitle = document.getElementById("memo-text");
+            let addText = document.getElementById("memo-textarea");
+
+            addBtn.addEventListener("click", (e) => {
+                if (addTitle.value == "" || addText.value == "") {
+                    return alert("Please, add notes and text");
+                }
+
+                let memos = localStorage.getItem("memos");
+                if (memos == null){
+                    memosObj = [];
+                } else {
+                    memosObj = JSON.parse(memos);
+                }
+                let myObj = {
+                    title: addTitle.value,
+                    text: addText.value,
+                    done: "notDone"
+                }
+                
+                memosObj.push(myObj)
+
+                localStorage.setItem("memos", JSON.stringify(memosObj));
+                addTitle.value = "";
+                addText.value = "";
+                addDone.value = "";
+
+                
+
+        
+
+            })
+
+            function showMemos() {
+                let memos = localStorage.getItem("memos")
+                if (memos == null){
+                    memosObj = [];
+                } else {
+                    memosObj = JSON.parse(memos);    
+            }
+            let html = "";
+            memosObj.forEach(function(element, index) {
+            html += `
+            <div id="${element.done}">
+            <p id="note-counter">Memo ${index +1}</p>
+            <h3 id="note-title">${element.title}</h3>
+            <p id="note-text">${element.text}</p>
+            <button id="${index}" onclick="markDone(this.id)" class="done-button">Done</button>
+            <button id="${index}" onclick="deleteMemo(this.id)" class="delete-button">Delete</button>
+          
+            </div>
+            `;
+
+        });
+        let memoElm = document.getElementById("memoList");
+        if (memosObj.length != 0) {
+            memoElm.innerHTML = html
+        } else {
+            memoElm.innerHTML = "No notes yet. You can add a note in a form above"
+        }
+    }
+
+    //function to delete memo
+    function deleteMemo(index) {
+        let confirmDelete = confirm("Do you really want to delete this note?");
+
+        if (confirmDelete == true) {
+        let memos=localStorage.getItem("memos");
+        if (memos == null){
+                    memosObj = [];
+                } else {
+                    memosObj = JSON.parse(memos);
+                }
+                memosObj.splice(index, 1);
+                localStorage.setItem("memos", JSON.stringify(memosObj));
+                showMemos();
+            }
+    }
+    function markDone(index) {
+        let confirmDone = confirm("Is it really done? Really");
+        if(confirmDone == true) {
+        let memos = localStorage.getItem("memos");
+        if (memos == null){
+            memosObj = [];
+        } else {
+            memosObj = JSON.parse(memos);
+        }
+        //
+        
+        //memosObj[index].done.value="yesDone"; 
+        //ei toiminut
+        console.log(memosObj);
+        memosObj[index].done = "yesDone";
+        console.log(memosObj);
+     
+       //memosObj.findIndex((index, element) => {
+         //     element.done = "yesDone" ;
+        //})
+        //ylläoleva muutti kaikki doneksi
+        
+        localStorage.setItem("memos", JSON.stringify(memosObj));
+        showMemos();
+    }
+    }
+    
+    
+                
+    //function to show memos
+    
+    
+
+    showMemos();
+
+            
+		</script>
+
+
+	</body>
+
+</html>
